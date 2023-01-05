@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 //apply plugin: 'com.jfrog.bintray'
-//apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 28
@@ -43,18 +43,18 @@ repositories {
 }
 
 ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'NaraeAudioRecorder-FFmpeg-Recorder'
+//    bintrayRepo = 'maven'
+//    bintrayName = 'NaraeAudioRecorder-FFmpeg-Recorder'
     orgName = 'windsekirun'
 
-    publishedGroupId = 'com.github.WindSekirun.NaraeAudioRecorder'
+    publishedGroupId = 'com.github.andrea-liu87'
     libraryName = 'NaraeAudioRecorder'
     artifact = 'ffmpeg-recorder'
 
     libraryDescription = 'AudioRecorder for Android powered by Kotlin'
 
-    siteUrl = 'https://github.com/WindSekirun/NaraeAudioRecorder'
-    gitUrl = 'https://github.com/WindSekirun/NaraeAudioRecorder.git'
+    siteUrl = 'https://github.com/andrea-liu87/NaraeAudioRecorder'
+    gitUrl = 'https://github.com/andrea-liu87/NaraeAudioRecorder.git'
 
     libraryVersion = rootProject.ext.libraryVersion
 
@@ -116,6 +116,7 @@ artifacts {
 //}
 
 group = publishedGroupId
+version = libraryVersion
 
 //install {
 //    repositories.mavenInstaller {
@@ -155,3 +156,17 @@ group = publishedGroupId
 //        }
 //    }
 //}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = publishedGroupId
+                artifactId = artifact
+                version = libraryVersion
+            }
+        }
+    }
+}
