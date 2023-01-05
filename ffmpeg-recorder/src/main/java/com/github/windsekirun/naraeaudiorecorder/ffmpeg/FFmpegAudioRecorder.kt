@@ -81,6 +81,10 @@ open class FFmpegAudioRecorder(file: File, recordWriter: RecordWriter) : WavAudi
 
         commandBuilder.addAll(listOf("-y", "-i", file.path))
 
+        if (convertConfig.oggFormat) {
+            commandBuilder.addAll(listOf("-vn", "-acodec", "libvorbis"))
+        }
+
         if (convertConfig.samplingRate != FFmpegSamplingRate.ORIGINAL) {
             commandBuilder.addAll(listOf("-ar", convertConfig.samplingRate.samplingRate.toString()))
         }
