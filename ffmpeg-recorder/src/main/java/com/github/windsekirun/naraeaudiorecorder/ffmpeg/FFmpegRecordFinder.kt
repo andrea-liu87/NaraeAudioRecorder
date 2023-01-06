@@ -24,6 +24,7 @@ class FFmpegRecordFinder : RecordFinder {
             "m4a" -> FFmpegAudioRecorder(file, writer)
             "wma" -> FFmpegAudioRecorder(file, writer)
             "flac" -> FFmpegAudioRecorder(file, writer)
+            "ogg" -> FFmpegAudioRecorder(file, writer)
             else -> PcmAudioRecorder(file, writer)
         }
     }
