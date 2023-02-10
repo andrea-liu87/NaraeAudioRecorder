@@ -39,6 +39,7 @@ open class DefaultAudioRecorder(
      */
     override fun resumeRecording() {
         recordWriter.getAudioSource().setRecordAvailable(true)
+        executorService.submit(recordingTask)
     }
 
     /**
