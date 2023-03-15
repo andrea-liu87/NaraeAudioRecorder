@@ -75,7 +75,7 @@ class NaraeAudioRecorder {
      * Start Recording
      */
     fun startRecording(context: Context) {
-        val granted: Boolean = if (Build.VERSION.SDK_INT >= 23) {
+        val granted: Boolean = if (Build.VERSION.SDK_INT in 23..32) {
             NEEDED_PERMISSIONS.all {
                 checkPermissionGranted(context, it)
             }
